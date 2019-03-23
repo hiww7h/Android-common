@@ -1,4 +1,4 @@
-# Android-common 公共库封装，包括一些基础功能
+# Android-common 公共库封装，包括一些基础功能 https://github.com/ww7hcom/Android-common
 
 ## 项目目录
 
