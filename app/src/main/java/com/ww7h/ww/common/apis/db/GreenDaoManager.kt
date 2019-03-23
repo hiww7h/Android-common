@@ -94,6 +94,22 @@ class GreenDaoManager private constructor() {
         }
     }
 
+    fun <T> deleteOne(entity: T) {
+        writeDB(3, entity, null, null, null)
+    }
+
+    fun <T> deleteList(entityList: List<T>) {
+        for (t in entityList) {
+            writeDB(3, t, null, null, null)
+        }
+    }
+
+    fun <T> deleteArray(entityList: Array<T>) {
+        for (t in entityList) {
+            writeDB(3, t, null, null, null)
+        }
+    }
+
     fun executeSql(sql: String) {
         writeDB<Any>(1, null, null, null, sql)
     }
@@ -109,12 +125,11 @@ class GreenDaoManager private constructor() {
     @Synchronized
     private fun <T> writeDB(type: Int, entity: T?, sqlList: List<String>?, sqls: Array<String>?, sql: String?) {
         openCount++
-        if (type == 0) {
-            getDaoSession()!!.insertOrReplace(entity!!)
-        } else if (type == 1) {
-            getDaoSession()!!.database.execSQL(sql)
-        } else if (type == 2) {
-            executeSqlList(sqlList, sqls)
+        when (type) {
+            0 -> getDaoSession()!!.insertOrReplace(entity!!)
+            1 -> getDaoSession()!!.database.execSQL(sql)
+            2 -> executeSqlList(sqlList, sqls)
+            3 -> getDaoSession()!!.delete(entity)
         }
         closeDB()
     }
