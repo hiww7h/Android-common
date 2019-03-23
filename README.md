@@ -1,5 +1,21 @@
 # Android-common 公共库封装，包括一些基础功能 https://github.com/ww7hcom/Android-common
 
+# 添加方式
+
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+    
+    dependencies {
+        implementation 'com.github.ww7hcom:Android-common:Tag'
+	}
+
+
+
+
 ## 项目目录
 
 1、apis 主要包括一些系统和第三方api的使用的一个封装. 
@@ -112,14 +128,3 @@ https://github.com/ww7hcom/Android-common/tree/master/app/src/main/java/com/ww7h
     protected void refusePermission(String[] permissions) {
     
     }
-
-
-
-
-
-
-
-
-
-
-
