@@ -19,7 +19,7 @@ import java.util.ArrayList
 
 abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
 
-    private var activity: T? = null
+    protected var activity: T? = null
 
     private var TAG: String? = null
 
