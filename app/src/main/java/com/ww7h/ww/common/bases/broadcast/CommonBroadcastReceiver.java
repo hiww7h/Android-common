@@ -8,10 +8,10 @@ import android.content.IntentFilter;
 /**
  * Created by: Android Studio.
  * PackageName: com.ww7h.ww.common.bases.broadcast
- * User: ww
  * DateTime: 2019/3/25 16:04
+ * @author ww
  */
-public class BaseBroadcast extends BroadcastReceiver implements BroadcastReceiverInterface {
+public class CommonBroadcastReceiver extends BroadcastReceiver implements BroadcastReceiverInterface {
 
     private Context mContext;
     private BroadcastReceiverCallBack mCallBack;
