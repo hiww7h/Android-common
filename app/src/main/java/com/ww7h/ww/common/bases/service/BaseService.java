@@ -1,6 +1,7 @@
 package com.ww7h.ww.common.bases.service;
 
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -14,10 +15,11 @@ import android.os.IBinder;
  * DateTime: 2019/3/25 15:24
  * @author ww
  */
-public abstract class BaseService<T> extends Service implements ServiceInterface{
+public abstract class BaseService<T> extends Service implements ServiceInterface, ServiceConnection{
 
     protected ServiceBinder mBinder = new ServiceBinder();
     protected Context mContext;
+    protected ConnectionCallBack mConnectionCallBack;
 
     /**
      * 获取当前页面的service的实例
@@ -31,10 +33,10 @@ public abstract class BaseService<T> extends Service implements ServiceInterface
     }
 
     @Override
-    public void bindService(Context context, Intent intent, ServiceConnection connection ,int flag) {
+    public void bindService(Context context, Intent intent, ConnectionCallBack connection ,int flag) {
         mContext = context;
         intent.setClass(context, this.getClass());
-        context.bindService(intent, connection, flag);
+        context.bindService(intent, this, flag);
     }
 
     @Override
@@ -42,6 +44,30 @@ public abstract class BaseService<T> extends Service implements ServiceInterface
         if (mContext != null) {
             mContext.unbindService(connection);
         }
+    }
+
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+        if (mConnectionCallBack != null) {
+            mConnectionCallBack.onServiceConnected(name, (ServiceBinder) service);
+        }
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+        if (mConnectionCallBack != null) {
+            mConnectionCallBack.onServiceDisconnected(name);
+        }
+    }
+
+    @Override
+    public void onBindingDied(ComponentName name) {
+
+    }
+
+    @Override
+    public void onNullBinding(ComponentName name) {
+
     }
 
     public class ServiceBinder extends Binder {
