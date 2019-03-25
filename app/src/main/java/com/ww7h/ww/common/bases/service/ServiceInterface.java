@@ -26,7 +26,7 @@ public interface ServiceInterface {
      * 接触service绑定
      * @param connection 链接
      */
-    void unbindService(ServiceConnection connection);
+    void unbindService(ConnectionCallBack connection);
 
     /**
      * 开始
