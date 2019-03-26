@@ -106,7 +106,6 @@ public class HttpOkHttp {
         }
     }
 
-
     public interface OkHttpCallBack<T> {
         /**
          * 请求成功回调

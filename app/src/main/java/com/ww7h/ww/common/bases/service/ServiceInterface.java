@@ -1,9 +1,10 @@
 package com.ww7h.ww.common.bases.service;
 
+import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
+
 
 /**
  * Created by: Android Studio.
@@ -45,7 +46,7 @@ public interface ServiceInterface {
          * @param name ComponentName
          * @param service BaseService.ServiceBinder
          */
-        void onServiceConnected(ComponentName name, BaseService.ServiceBinder service);
+        <T extends Service> void onServiceConnected(ComponentName name, BaseService<T>.ServiceBinder service);
 
         /**
          * service连接断开

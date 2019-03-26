@@ -15,7 +15,7 @@ import android.os.IBinder;
  * DateTime: 2019/3/25 15:24
  * @author ww
  */
-public abstract class BaseService<T> extends Service implements ServiceInterface, ServiceConnection{
+public abstract class BaseService<T extends Service> extends Service implements ServiceInterface, ServiceConnection{
 
     protected ServiceBinder mBinder = new ServiceBinder();
     protected Context mContext;
@@ -49,7 +49,7 @@ public abstract class BaseService<T> extends Service implements ServiceInterface
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
         if (mConnectionCallBack != null) {
-            mConnectionCallBack.onServiceConnected(name, (ServiceBinder) service);
+            mConnectionCallBack.onServiceConnected(name,(ServiceBinder) service);
         }
     }
 
