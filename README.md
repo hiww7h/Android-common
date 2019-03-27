@@ -10,7 +10,7 @@
 	}
     
     dependencies {
-        implementation 'com.github.ww7hcom:Android-common:Tag'
+        implementation 'com.github.ww7hcom:Android-common:1.0.8'
 	}
 
 
