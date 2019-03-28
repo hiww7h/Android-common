@@ -1,11 +1,15 @@
 package com.ww7h.ww.common.utils
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.pm.Signature
+import android.net.Uri
+import android.support.v4.content.ContextCompat.startActivity
 
 import java.io.ByteArrayInputStream
+import java.io.File
 import java.io.InputStream
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
@@ -79,4 +83,18 @@ object APPUtil {
         }
         return str.toString()
     }
+
+    fun apkShare (context: Context, packageInfo: PackageInfo) {
+        val apkFile = File(packageInfo.applicationInfo.sourceDir)
+        if (apkFile.exists()) {
+            val intent = Intent()
+            intent.action = Intent.ACTION_SEND;
+            intent.type = "*/*";
+            intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(apkFile))
+            context.startActivity(intent)
+        } else {
+            LogUtil.d(APPUtil::class.java.name, "无法获取当前的选中的APK")
+        }
+    }
+
 }
