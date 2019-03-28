@@ -10,10 +10,8 @@
 	}
     
     dependencies {
-        implementation 'com.github.ww7hcom:Android-common:1.0.8'
+        implementation 'com.github.ww7hcom:Android-common:1.0.9'
 	}
-
-
 
 
 ## 项目目录
