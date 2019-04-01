@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="statusBar">
-        <attr name="statusBarBgColor" format="color"></attr>
+        <attr name="statusBarBgColor" format="color"/>
+    </declare-styleable>
+    
+    <declare-styleable name="TextNumberPicker">
+        <attr name="textSize" format="dimension"/>
+        <attr name="textColor" format="color"/>
+        <attr name="lineColor" format="color"/>
+        <attr name="descendantFocusability" format="integer">
+            <enum name="FOCUS_BEFORE_DESCENDANTS" value="0x20000"/>
+            <enum name="FOCUS_AFTER_DESCENDANTS" value="0x40000"/>
+            <enum name="FOCUS_BLOCK_DESCENDANTS" value="0x60000"/>
+        </attr>
     </declare-styleable>
 
 </resources>

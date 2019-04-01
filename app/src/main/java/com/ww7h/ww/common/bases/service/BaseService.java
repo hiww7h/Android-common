@@ -15,11 +15,9 @@ import android.os.IBinder;
  * DateTime: 2019/3/25 15:24
  * @author ww
  */
-public abstract class BaseService<T extends Service> extends Service implements ServiceInterface, ServiceConnection{
+public abstract class BaseService<T extends Service> extends Service implements ServiceInterface {
 
     protected ServiceBinder mBinder = new ServiceBinder();
-    protected Context mContext;
-    protected ConnectionCallBack mConnectionCallBack;
 
     /**
      * 获取当前页面的service的实例
@@ -32,45 +30,8 @@ public abstract class BaseService<T extends Service> extends Service implements 
         return mBinder;
     }
 
-    @Override
-    public void bindService(Context context, Intent intent, ConnectionCallBack connection ,int flag) {
-        mContext = context;
-        intent.setClass(context, this.getClass());
-        context.bindService(intent, this, flag);
-    }
-
-    @Override
-    public void unbindService(ServiceConnection connection) {
-        if (mContext != null) {
-            mContext.unbindService(connection);
-        }
-    }
-
-    @Override
-    public void onServiceConnected(ComponentName name, IBinder service) {
-        if (mConnectionCallBack != null) {
-            mConnectionCallBack.onServiceConnected(name,(ServiceBinder) service);
-        }
-    }
-
-    @Override
-    public void onServiceDisconnected(ComponentName name) {
-        if (mConnectionCallBack != null) {
-            mConnectionCallBack.onServiceDisconnected(name);
-        }
-    }
-
-    @Override
-    public void onBindingDied(ComponentName name) {
-
-    }
-
-    @Override
-    public void onNullBinding(ComponentName name) {
-
-    }
-
     public class ServiceBinder extends Binder {
+
         /**
          * 获取当前service
          * @return 返回service实例
@@ -78,5 +39,6 @@ public abstract class BaseService<T extends Service> extends Service implements 
         public  T getService() {
             return getThisService();
         }
+
     }
 }

@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.IBinder;
 
 
 /**
@@ -15,21 +16,6 @@ import android.content.Intent;
 public interface ServiceInterface {
 
     /**
-     * 绑定service
-     * @param context 当前界面service
-     * @param intent 绑定携带的参数
-     * @param connection 连接回调
-     * @param flag 连接标识
-     */
-    void bindService(Context context, Intent intent, ConnectionCallBack connection , int flag);
-
-    /**
-     * 接触service绑定
-     * @param connection 链接
-     */
-    void unbindService(ConnectionCallBack connection);
-
-    /**
      * 开始
      */
     void startDO();
@@ -38,22 +24,5 @@ public interface ServiceInterface {
      * 停止
      */
     void stopDO();
-
-    interface ConnectionCallBack {
-
-        /**
-         * service连接成功
-         * @param name ComponentName
-         * @param service BaseService.ServiceBinder
-         */
-        <T extends Service> void onServiceConnected(ComponentName name, BaseService<T>.ServiceBinder service);
-
-        /**
-         * service连接断开
-         * @param name ComponentName
-         */
-        void onServiceDisconnected(ComponentName name);
-
-    }
 
 }

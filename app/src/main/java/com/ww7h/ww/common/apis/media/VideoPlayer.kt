@@ -1,14 +1,13 @@
 package com.ww7h.ww.common.apis.media
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.SurfaceTexture
 import android.media.MediaPlayer
 import android.net.Uri
 import android.util.Size
 import android.view.Surface
 import android.view.TextureView
-import com.ww7h.ww.common.utils.ThreadPoolProxy
+import com.ww7h.ww.common.threads.ThreadPoolManager
 
 import java.io.IOException
 
@@ -61,7 +60,7 @@ class VideoPlayer : TextureView.SurfaceTextureListener, MediaPlayer.OnPreparedLi
 
     override fun onSurfaceTextureAvailable(surface: SurfaceTexture, width: Int, height: Int) {
         mSurface = Surface(surface)
-        ThreadPoolProxy.instance.execute(mRunnable)
+        ThreadPoolManager.getInstance().execute(mRunnable)
     }
 
     override fun onSurfaceTextureSizeChanged(surface: SurfaceTexture, width: Int, height: Int) {

@@ -11,7 +11,6 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
-import com.ww7h.ww.common.R
 import com.ww7h.ww.common.utils.Constant
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -197,4 +196,5 @@ abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
     protected open fun refusePermission(permissions: Array<String>) {
         openAppDetails(permissions)
     }
+
 }
