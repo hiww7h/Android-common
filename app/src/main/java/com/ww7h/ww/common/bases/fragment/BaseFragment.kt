@@ -12,8 +12,8 @@ import android.view.ViewGroup
  */
 @Suppress("UNCHECKED_CAST")
 abstract class BaseFragment<T : BaseFragment<T>>:Fragment() {
-    private lateinit var TAG:String
-    private lateinit var fragment:T
+    protected lateinit var TAG:String
+    protected lateinit var fragment:T
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
