@@ -1,9 +1,6 @@
 package com.ww7h.ww.common.bases.view.recyclerview.adapters
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
 
 abstract class RecyclerViewAdapter<VH :RecyclerViewHolder,T >: RecyclerView.Adapter<VH>() {
 

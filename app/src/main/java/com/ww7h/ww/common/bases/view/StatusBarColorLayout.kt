@@ -16,12 +16,12 @@ class StatusBarColorLayout(context: Context?,var attrs: AttributeSet?) : LinearL
     }
 
     private fun addStatusBar(){
-        var statusBar = TextView(context)
+        val statusBar = TextView(context)
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.statusBar)
         val color = typedArray.getColor(R.styleable.statusBar_statusBarBgColor, Color.GREEN)
         addView(statusBar)
         statusBar.setBackgroundColor(color)
-        var lp = statusBar.layoutParams
+        val lp = statusBar.layoutParams
         lp.width = ScreenUtil.getScreenWidth(context)
         lp.height = ScreenUtil.getStatusBarHeight(context)
         statusBar.setBackgroundColor(color)

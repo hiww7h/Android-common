@@ -8,7 +8,6 @@ import android.content.ServiceConnection;
 import android.os.Binder;
 import android.os.IBinder;
 
-
 /**
  * Created by: Android Studio.
  * PackageName: com.ww7h.ww.common.bases.service

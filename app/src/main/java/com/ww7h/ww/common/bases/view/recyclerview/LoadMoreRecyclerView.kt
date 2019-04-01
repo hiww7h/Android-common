@@ -31,7 +31,7 @@ abstract class LoadMoreRecyclerView(context: Context, attrs: AttributeSet?): Rec
 
     class RecyclerViewOnScrollListener(private var swipeRefreshLayout: SwipeRefreshLayout?
                                        , private var onScrollListener: OnScrollListener?): RecyclerView.OnScrollListener() {
-        internal var lastVisibleItemPosition: Int = 0
+        private var lastVisibleItemPosition: Int = 0
 
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
