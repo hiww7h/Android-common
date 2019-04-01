@@ -20,7 +20,7 @@ abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
 
     protected var activity: T? = null
 
-    private var TAG: String? = null
+    protected var TAG: String? = null
 
     private val PERMISSION_REQUEST_CODE = 0x1001
 
