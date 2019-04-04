@@ -126,3 +126,8 @@ https://github.com/ww7hcom/Android-common/tree/master/app/src/main/java/com/ww7h
     protected void refusePermission(String[] permissions) {
     
     }
+
+
+# License
+
+Copyright 2019 ww.
