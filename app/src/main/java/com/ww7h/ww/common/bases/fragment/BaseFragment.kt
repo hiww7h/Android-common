@@ -23,7 +23,7 @@ abstract class BaseFragment<T : BaseFragment<T>>:Fragment() {
         fragment = this as T
         TAG = fragment.javaClass.name
         return if (designPattern) {
-            getContentView(inflater)
+            getContentView(inflater, container)
         } else {
             inflater.inflate(getResourceId(), null)
         }
@@ -58,7 +58,7 @@ abstract class BaseFragment<T : BaseFragment<T>>:Fragment() {
     /**
      * 当使用MVC、MVP等，设计模式时，需要手动初始化视图
      */
-    protected open fun getContentView(inflater: LayoutInflater): View? {
+    protected open fun getContentView(inflater: LayoutInflater, container: ViewGroup?): View? {
         return null
     }
 }
