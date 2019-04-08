@@ -10,7 +10,7 @@
 	}
     
     dependencies {
-        implementation 'com.github.ww7hcom:Android-common:1.0.11'
+        implementation 'com.github.ww7hcom:Android-common:1.0.13'
 	}
 
 
