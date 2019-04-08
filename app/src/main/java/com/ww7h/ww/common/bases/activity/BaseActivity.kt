@@ -24,7 +24,6 @@ abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
 
     private val PERMISSION_REQUEST_CODE = 0x1001
 
-
     /**
      * 获取当前界面需要申请的权限，默认无权限，子类需重写该方法
      */
@@ -37,9 +36,18 @@ abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
      */
     protected abstract val contentView: Int
 
+    /**
+     * 当前是否使用了设计模式
+     */
+    protected abstract val designPattern: Boolean
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(contentView)
+        if (designPattern) {
+            initContentView()
+        } else {
+            setContentView(contentView)
+        }
 
         activity = this as T
 
@@ -195,6 +203,13 @@ abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
      */
     protected open fun refusePermission(permissions: Array<String>) {
         openAppDetails(permissions)
+    }
+
+    /**
+     * 当使用MVC、MVP等，设计模式时，需要手动初始化视图
+     */
+    protected open fun initContentView() {
+
     }
 
 }

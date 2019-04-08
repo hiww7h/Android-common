@@ -14,12 +14,23 @@ import android.view.ViewGroup
 abstract class BaseFragment<T : BaseFragment<T>>:Fragment() {
     protected lateinit var TAG:String
     protected lateinit var fragment:T
-
+    /**
+     * 当前是否使用了设计模式
+     */
+    protected abstract val designPattern: Boolean
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragment = this as T
         TAG = fragment.javaClass.name
-        return inflater.inflate(getResourceId(), null)
+        return if (designPattern) {
+            getContentView()
+        } else {
+            inflater.inflate(getResourceId(), null)
+        }
+    }
+
+    fun <V : View> findViewById(id: Int):V? {
+        return view?.findViewById(id)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,4 +54,11 @@ abstract class BaseFragment<T : BaseFragment<T>>:Fragment() {
      * 初始化事件
      */
     abstract fun initAction()
+
+    /**
+     * 当使用MVC、MVP等，设计模式时，需要手动初始化视图
+     */
+    protected open fun getContentView(): View? {
+        return null
+    }
 }
