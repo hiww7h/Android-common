@@ -1,4 +1,4 @@
-# Android-common 公共库封装，包括一些基础功能 https://github.com/ww7hcom/Android-common
+# [Android-common 公共库封装，包括一些基础功能]("https://github.com/ww7hcom/")Android-common
 
 # 添加方式
 
@@ -16,29 +16,17 @@
 
 ## 项目目录
 
-[1、apis 主要包括一些系统和第三方api的使用的一个封装. ]
+1、[apis 主要包括一些系统和第三方api的使用的一个封装]("https://github.com/ww7hcom/Android-common/tree/master/app/src/main/java/com/ww7h/ww/common/apis")
 
-(https://github.com/ww7hcom/Android-common/tree/master/app/src/main/java/com/ww7h/ww/common/apis)
+2、[bases 主要是一些常用基类的封装]("https://github.com/ww7hcom/Android-common/tree/master/app/src/main/java/com/ww7h/ww/common/bases")
 
-2、bases 主要是一些常用基类的封装  
+3、[listeners 主要是一些常用的事件监听]("https://github.com/ww7hcom/Android-common/tree/master/app/src/main/java/com/ww7h/ww/common/listeners")
 
-https://github.com/ww7hcom/Android-common/tree/master/app/src/main/java/com/ww7h/ww/common/bases
+4、[natives 主要是一些native方法的提供]("https://github.com/ww7hcom/Android-common/tree/master/app/src/main/java/com/ww7h/ww/common/natives")
 
-3、listeners 主要是一些常用的事件监听  
+5、[popupwindows 主要是一些常用样式的弹框的封装]("https://github.com/ww7hcom/Android-common/tree/master/app/src/main/java/com/ww7h/ww/common/popupwindows")
 
-https://github.com/ww7hcom/Android-common/tree/master/app/src/main/java/com/ww7h/ww/common/listeners
-
-4、natives 主要是一些native方法的提供  
-
-https://github.com/ww7hcom/Android-common/tree/master/app/src/main/java/com/ww7h/ww/common/natives
-
-5、popupwindows 主要是一些常用样式的弹框的封装  
-
-https://github.com/ww7hcom/Android-common/tree/master/app/src/main/java/com/ww7h/ww/common/popupwindows
-
-6、utils 常用工具类的封装  
-
-https://github.com/ww7hcom/Android-common/tree/master/app/src/main/java/com/ww7h/ww/common/utils
+6、[utils 常用工具类的封装]("https://github.com/ww7hcom/Android-common/tree/master/app/src/main/java/com/ww7h/ww/common/utils")
 
 
 ## 简单的使用
