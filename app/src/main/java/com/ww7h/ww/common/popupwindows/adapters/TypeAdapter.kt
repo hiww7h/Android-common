@@ -12,7 +12,15 @@ import com.ww7h.ww.common.listeners.OnRecyclerItemClick
 import com.ww7h.ww.common.popupwindows.models.TypeModel
 
 class TypeAdapter(var context: Context,var onRecyclerItemClick: OnRecyclerItemClick<TypeModel>):
+
     RecyclerViewAdapter<TypeAdapter.TypeViewHolder, TypeModel>() {
+    override fun areItemsTheSame(oldM: TypeModel, newM: TypeModel): Boolean {
+        return oldM.typeName == newM.typeName || oldM.typeTag == newM.typeTag
+    }
+
+    override fun areContentsTheSame(oldM: TypeModel, newM: TypeModel): Boolean {
+        return oldM.typeName == newM.typeName || oldM.typeTag == newM.typeTag
+    }
 
     override fun onBindViewHolder(holder: TypeViewHolder, position: Int, viewType: Int) {
         holder.type_tv.text = getItem(position).typeName
