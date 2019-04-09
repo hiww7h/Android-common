@@ -52,9 +52,12 @@ abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
         activity = this as T
 
         TAG = activity?.javaClass?.name
-        setSupportActionBar(toolbar)
-        if (intent.getStringExtra("title") != null) {
-            title = intent.getStringExtra("title")
+
+        if (supportActionBar == null) {
+            setSupportActionBar(toolbar)
+            if (intent.getStringExtra("title") != null) {
+                title = intent.getStringExtra("title")
+            }
         }
 
         getPermission()
