@@ -7,6 +7,12 @@ import android.widget.Toast
 
 class ToastUtil private constructor(private val mContext: Context) {
 
+    private var mToast: Toast? = null
+
+    init {
+        mToast = Toast(mContext)
+    }
+
     /**
      * 短时间显示Toast【居下】
      * @param msg 显示的内容-字符串
@@ -74,7 +80,6 @@ class ToastUtil private constructor(private val mContext: Context) {
     }
 
     companion object {
-        private var mToast: Toast? = null
         @SuppressLint("StaticFieldLeak")
         private var mToastUtil: ToastUtil? = null
 
@@ -83,11 +88,9 @@ class ToastUtil private constructor(private val mContext: Context) {
                 synchronized(ToastUtil::class.java) {
                     if (mToastUtil == null) {
                         mToastUtil = ToastUtil(context)
-                        mToast = Toast(context)
                     }
                 }
             }
-            mToast!!.cancel()
             return this.mToastUtil!!
         }
     }

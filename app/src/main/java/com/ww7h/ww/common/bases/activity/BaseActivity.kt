@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
 import com.ww7h.ww.common.utils.Constant
+import com.ww7h.ww.common.utils.ToastUtil
 import kotlinx.android.synthetic.main.toolbar.*
 
 import java.util.ArrayList
@@ -59,7 +60,6 @@ abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
                 title = intent.getStringExtra("title")
             }
         }
-
         getPermission()
     }
 

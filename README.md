@@ -1,4 +1,4 @@
-# [Android-common 公共库封装，包括一些基础功能]("https://github.com/ww7hcom/")Android-common
+# [Android-common 公共库封装，包括一些基础功能]("https://github.com/ww7hcom/")
 
 # 添加方式
 
@@ -94,8 +94,24 @@
 
     HttpOkHttp.getInstance.requestPost( url, json, okHttpCallBack, clazz)
 
-### retrofit的使用
+#### retrofit的使用
+
+    
+
 ### media的使用
+1、初始化
+
+    var vp = VideoPlayer()
+    vp.init(textureView, contex, path)
+    
+2、播放
+    
+    vp.play()
+    
+3、暂停
+
+    vp.pause()
+    
 
 ## bases常用基类的使用
 ### activity 的使用，主要是其中方法的用途
@@ -119,3 +135,4 @@
 # License
 
 Copyright 2019 ww.
+如有其他公共功能需求，欢迎留言，提交或提交分支
