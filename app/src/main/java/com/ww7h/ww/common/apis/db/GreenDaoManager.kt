@@ -72,7 +72,6 @@ class GreenDaoManager private constructor() {
     }
 
     private fun getDaoSession(): AbstractDaoSession? {
-        val db = helper!!.writableDatabase
         daoSession = daoMaster!!.newSession()
         return daoSession
     }
@@ -184,8 +183,8 @@ class GreenDaoManager private constructor() {
         return tList
     }
 
-    private fun <T> setFieldValue(t: T, fieldName: String, cursor: Cursor, clazz: Class<T>) {
-        var fieldName = fieldName
+    private fun <T> setFieldValue(t: T, name: String, cursor: Cursor, clazz: Class<T>) {
+        var fieldName = name
         val index = cursor.getColumnIndex(fieldName)
         var field: Field? = null
         try {
@@ -226,7 +225,7 @@ class GreenDaoManager private constructor() {
 
 
     private fun executeSqlList(sqlList: List<String>?, sqls: Array<String>?) {
-        if ((sqlList == null || sqlList.isEmpty()) && (sqls == null || sqls.size == 0)) {
+        if ((sqlList == null || sqlList.isEmpty()) && (sqls == null || sqls.isEmpty())) {
             return
         }
         getDaoSession()!!.runInTx {
@@ -247,7 +246,7 @@ class GreenDaoManager private constructor() {
      * 判断数据库中某张表是否存在
      */
     fun sqlTableIsExist(tableName: String): Boolean {
-        val count = queryCount("select count(*) as c from Sqlite_master  where type ='table' and name ='$tableName'")
+        val count = queryCount("select count(*) as c from sqlite_master  where type ='table' and name ='$tableName'")
         return count > 0
     }
 

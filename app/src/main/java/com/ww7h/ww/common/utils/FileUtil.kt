@@ -10,7 +10,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStreamWriter
 
-class FileUtil {
+object FileUtil {
 
     /**
      * 通过Uri获取文件在本地存储**的**真实路径
@@ -28,11 +28,11 @@ class FileUtil {
 
     /**
      * 复制asset文件到指定目录
-     * @param jsonString  json文件内容
+     * @param content  json文件内容
      * @param filePath  文件在Sdcard下的目录
      * @param fileName  文件名称
      */
-    fun createJsonFile(jsonString: String, filePath: String, fileName: String): String {
+    fun createTextFile(content: String, filePath: String, fileName: String): String {
         // 拼接文件完整路径
         var fullPath = Environment.getExternalStorageDirectory().absolutePath+filePath + File.separator + fileName + ".json"
 
@@ -49,7 +49,7 @@ class FileUtil {
             file.createNewFile()
             // 将格式化后的字符串写入文件
             val write = OutputStreamWriter(FileOutputStream(file), "UTF-8")
-            write.write(jsonString)
+            write.write(content)
             write.flush()
             write.close()
         } catch (e: Exception) {

@@ -26,32 +26,49 @@ public class LogUtil {
 
     public static void v(String tag, String msg){
         if(level <= VERBOSE){
-            Log.v(tag, msg);
+            Log.v(getTag(tag), msg);
         }
     }
 
     public static void d(String tag, String msg){
         if(level <= DEBUG){
-            Log.d(tag, msg);
+            Log.d(getTag(tag), msg);
         }
     }
 
     public static void i(String tag, String msg){
         if(level <= INFO){
-            Log.i(tag, msg);
+            Log.i(getTag(tag), msg);
         }
     }
 
     public static void w(String tag, String msg){
         if(level <= WARN){
-            Log.w(tag, msg);
+            Log.w(getTag(tag), msg);
         }
     }
 
     public static void e(String tag, String msg){
         if(level <= ERROR){
-            Log.e(tag, msg);
+            Log.e(getTag(tag), msg);
         }
+    }
+
+    /**
+     * 根据类名获取当前调用的方法和行号
+     * @param tag 类名
+     * @return 前调用的方法和行号
+     */
+    private static String getTag(String tag) {
+        StackTraceElement[] temp = Thread.currentThread().getStackTrace();
+        StackTraceElement method = temp[1];
+        for (StackTraceElement stackTraceElement : temp) {
+            if (stackTraceElement.getClassName().contains(tag)) {
+                method = stackTraceElement;
+                break;
+            }
+        }
+        return method.getClassName() + "." + method.getMethodName() + "() (" + method.getLineNumber() + ")";
     }
 
 }

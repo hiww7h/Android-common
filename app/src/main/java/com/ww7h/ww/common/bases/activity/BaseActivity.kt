@@ -18,9 +18,9 @@ import java.util.ArrayList
 
 abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
 
-    protected var activity: T? = null
+    protected lateinit var activity: T
 
-    protected var TAG: String? = null
+    protected lateinit var TAG: String
 
     private val PERMISSION_REQUEST_CODE = 0x1001
 
@@ -51,7 +51,7 @@ abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
 
         activity = this as T
 
-        TAG = activity?.javaClass?.name
+        TAG = activity.javaClass.name
 
         if (supportActionBar == null) {
             setSupportActionBar(toolbar)
@@ -63,6 +63,9 @@ abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
         getPermission()
     }
 
+    /**
+     * 返回按钮点击事件
+     */
     fun showLeftWithIcon(iconId:Int) {
         toolbar?.setNavigationIcon(iconId)
         toolbar?.setNavigationOnClickListener { onLeftClick() }
