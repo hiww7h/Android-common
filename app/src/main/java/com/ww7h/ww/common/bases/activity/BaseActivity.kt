@@ -74,7 +74,7 @@ abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
     /**
      * 返回按钮点击事件
      */
-    fun showLeftWithIcon(drawable: Drawable) {
+    fun showLeftWithDrawable(drawable: Drawable?) {
         toolbar?.navigationIcon = drawable
         toolbar?.setNavigationOnClickListener { onLeftClick() }
     }
