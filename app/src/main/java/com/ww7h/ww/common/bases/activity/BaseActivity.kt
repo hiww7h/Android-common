@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -12,7 +13,6 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
 import com.ww7h.ww.common.utils.Constant
-import com.ww7h.ww.common.utils.ToastUtil
 import kotlinx.android.synthetic.main.toolbar.*
 
 import java.util.ArrayList
@@ -68,6 +68,14 @@ abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
      */
     fun showLeftWithIcon(iconId:Int) {
         toolbar?.setNavigationIcon(iconId)
+        toolbar?.setNavigationOnClickListener { onLeftClick() }
+    }
+
+    /**
+     * 返回按钮点击事件
+     */
+    fun showLeftWithIcon(drawable: Drawable) {
+        toolbar?.navigationIcon = drawable
         toolbar?.setNavigationOnClickListener { onLeftClick() }
     }
 
