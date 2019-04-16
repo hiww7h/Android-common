@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.ww7h.ww.common.R
-import com.ww7h.ww.common.bases.view.recyclerview.adapters.RecyclerViewAdapter
+import com.ww7h.ww.common.bases.view.recyclerview.adapters.BaseRecyclerViewAdapter
 import com.ww7h.ww.common.bases.view.recyclerview.adapters.RecyclerViewHolder
 import com.ww7h.ww.common.listeners.OnRecyclerItemClick
 import com.ww7h.ww.common.popupwindows.models.TypeModel
 
 class TypeAdapter(var context: Context,var onRecyclerItemClick: OnRecyclerItemClick<TypeModel>):
+    BaseRecyclerViewAdapter<TypeAdapter.TypeViewHolder, TypeModel>() {
 
-    RecyclerViewAdapter<TypeAdapter.TypeViewHolder, TypeModel>() {
     override fun areItemsTheSame(oldM: TypeModel, newM: TypeModel): Boolean {
         return oldM.typeName == newM.typeName || oldM.typeTag == newM.typeTag
     }

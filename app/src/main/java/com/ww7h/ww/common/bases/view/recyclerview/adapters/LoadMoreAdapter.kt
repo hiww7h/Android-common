@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ww7h.ww.common.R
 
-abstract class LoadMoreAdapter<VH : RecyclerViewHolder,T> (var context: Context): RecyclerViewAdapter<VH, T>() {
+abstract class LoadMoreAdapter<VH : RecyclerViewHolder,T> (var context: Context): BaseRecyclerViewAdapter<VH, T>() {
 
     abstract fun getViewType(position: Int):Int
 
