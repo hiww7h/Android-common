@@ -1,7 +1,7 @@
 package com.ww7h.ww.common.bases.view.recyclerview.adapters;
 
 import android.os.Handler;
-import android.os.Message;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
@@ -86,7 +86,7 @@ public abstract class BaseRecyclerViewAdapter<VH extends RecyclerViewHolder, T> 
         ThreadPoolManager.getInstance().execute(new Runnable() {
             @Override
             public void run() {
-                DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffUtil.Callback() {
+                final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffUtil.Callback() {
 
                     @Override
                     public int getOldListSize() {
@@ -108,25 +108,19 @@ public abstract class BaseRecyclerViewAdapter<VH extends RecyclerViewHolder, T> 
                         return BaseRecyclerViewAdapter.this.areContentsTheSame(dataList.get(oldPosition), newDataList.get(newPosition));
                     }
                 });
-                dataList.clear();
-                dataList.addAll(newDataList);
-                Message message = new Message();
-                message.what = 0;
-                message.obj = diffResult;
-                mHandler.sendMessage(message);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        dataList.clear();
+                        dataList.addAll(newDataList);
+                        diffResult.dispatchUpdatesTo(BaseRecyclerViewAdapter.this);
+                    }
+                });
             }
         });
     }
 
-    private Handler mHandler = new Handler(new Handler.Callback() {
-
-        @Override
-        public boolean handleMessage(Message msg) {
-            DiffUtil.DiffResult obj  = (DiffUtil.DiffResult) msg.obj;
-            obj.dispatchUpdatesTo(BaseRecyclerViewAdapter.this);
-            return false;
-        }
-    });
+    private Handler mHandler = new Handler(Looper.getMainLooper());
 
     /**
      * 判断item是否有变化

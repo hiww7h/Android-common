@@ -73,7 +73,7 @@ public class HttpOkHttp {
     public <T> void requestPost(@NotNull String url, @NotNull String json, @NotNull final OkHttpCallBack<T> okHttpCallBack,
                          @NotNull final Class<T> clazz) {
         RequestBody body = RequestBody.create(JSON, json);
-        Request request = new Request.Builder()
+        Request request = new Request.Builder().addHeader("","")
                 .url(url)
                 .post(body)
                 .build();
