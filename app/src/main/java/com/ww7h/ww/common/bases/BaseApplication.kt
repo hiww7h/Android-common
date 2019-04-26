@@ -14,18 +14,18 @@ abstract class BaseApplication : Application(), Thread.UncaughtExceptionHandler 
         super.onCreate()
 
         ApplicationContextUtil.instance.applicationContextWeak = WeakReference(this)
-        Thread.setDefaultUncaughtExceptionHandler(this)
+//        Thread.setDefaultUncaughtExceptionHandler(this)
 
     }
 
     override fun uncaughtException(t: Thread?, e: Throwable?) {
 
-        ThreadPoolManager.getInstance().execute {
-            FileUtil.createTextFile(t.toString() + "\n" + e.toString(),
-                "/ww7h/" + resources.getString(R.string.app_name),
-                "app_error_file" + DateUtil.longToDateStr(System.currentTimeMillis(),
-                    "yyyy-mm-dd HH:MM:ss") + ".txt" )
-        }
+//        ThreadPoolManager.getInstance().execute {
+//            FileUtil.createTextFile(t.toString() + "\n" + e.toString(),
+//                "/ww7h/" + resources.getString(R.string.app_name),
+//                "app_error_file" + DateUtil.longToDateStr(System.currentTimeMillis(),
+//                    "yyyy-mm-dd HH:MM:ss") + ".txt" )
+//        }
 
     }
 
