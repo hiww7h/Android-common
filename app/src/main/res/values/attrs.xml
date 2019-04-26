@@ -15,4 +15,15 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="RemindRadioButton">
+        <attr name="remindTextSize" format="dimension"/>
+        <attr name="remindNumber" format="integer"/>
+        <attr name="remindTextColor" format="color"/>
+        <attr name="remindTextBackground" format="reference"/>
+        <attr name="remindTextBgColor" format="color"/>
+        <attr name="remindTextWidth" format="dimension"/>
+        <attr name="remindTextHeight" format="dimension"/>
+        <attr name="remindMarginRight" format="dimension"/>
+    </declare-styleable>
+
 </resources>

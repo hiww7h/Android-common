@@ -10,7 +10,7 @@
 	}
     
     dependencies {
-        implementation 'com.github.ww7hcom:Android-common:1.0.22'
+        implementation 'com.github.ww7hcom:Android-common:1.0.23'
 	}
 
 
@@ -135,4 +135,5 @@
 # License
 
 Copyright 2019 ww.
+
 如有其他公共功能需求，欢迎留言，提交或提交分支
