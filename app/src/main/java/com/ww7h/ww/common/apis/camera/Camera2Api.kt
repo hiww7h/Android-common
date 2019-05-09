@@ -175,4 +175,8 @@ class Camera2Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback {
 
     override fun addCallbackBuffer(byte: ByteArray) {
     }
+
+    override fun openCamera(index: Int, callBackTye: Int) {
+        openCamera(index)
+    }
 }

@@ -158,4 +158,9 @@ class Camera1Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback, Camera
             mCamera?.addCallbackBuffer(byte)
         }
     }
+
+    override fun openCamera(index: Int, callBackTye: Int) {
+        this.callBackType = callBackType
+        openCamera(index)
+    }
 }

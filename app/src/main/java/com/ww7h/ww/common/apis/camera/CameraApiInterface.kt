@@ -11,6 +11,8 @@ interface CameraApiInterface {
 
         fun openCamera(index: Int)
 
+        fun openCamera(index: Int, callBackTye:Int)
+
         fun closeCamera()
 
         fun addCallbackBuffer(byte: ByteArray);
