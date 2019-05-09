@@ -13,6 +13,8 @@ interface CameraApiInterface {
 
         fun closeCamera()
 
+        fun addCallbackBuffer(byte: ByteArray);
+
     }
 
     interface CameraCallBack {

@@ -19,6 +19,7 @@ import java.util.Arrays
 
 class Camera2Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback {
 
+
     private var mSurfaceHolder: SurfaceHolder? = null
 
     private var mImageReader: ImageReader? = null
@@ -169,5 +170,9 @@ class Camera2Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback {
         override fun onConfigureFailed(session: CameraCaptureSession) {
             Toast.makeText(mContext, "配置失败", Toast.LENGTH_SHORT).show()
         }
+    }
+
+
+    override fun addCallbackBuffer(byte: ByteArray) {
     }
 }
