@@ -11,12 +11,6 @@ import java.io.IOException
 
 class Camera1Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback, Camera.PreviewCallback {
 
-
-    companion object{
-        const val CALL_BACK_MANUAL:Int = 0x10001;
-        const val CALL_BACK_AUTO:Int = 0x10002;
-    }
-
     private var mContext: Context? = null
     private var mSurfaceView: SurfaceView? = null
     private var mCallBack: CameraApiInterface.CameraCallBack? = null
@@ -28,7 +22,7 @@ class Camera1Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback, Camera
     private val mSize = Size(1280, 720)
     private var mCameraOpen = false
 
-    private var callBackType:Int = CALL_BACK_AUTO
+    private var callBackType:Int = CameraApiInterface.CALL_BACK_AUTO
 
     private val cameraInstance: Camera?
         get() {
@@ -98,9 +92,9 @@ class Camera1Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback, Camera
             mSurfaceView!!.holder.removeCallback(this)
         }
         if (mCamera != null) {
-            if (callBackType == CALL_BACK_AUTO) {
+            if (callBackType == CameraApiInterface.CALL_BACK_AUTO) {
                 mCamera!!.setPreviewCallback(null)
-            } else if (callBackType == CALL_BACK_MANUAL) {
+            } else if (callBackType == CameraApiInterface.CALL_BACK_MANUAL) {
                 mCamera!!.setPreviewCallbackWithBuffer(null)
             }
             mCamera!!.stopPreview()
@@ -115,9 +109,9 @@ class Camera1Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback, Camera
         try {
             mCamera!!.setPreviewDisplay(holder)
             mCamera!!.startPreview()
-            if (callBackType == CALL_BACK_AUTO) {
+            if (callBackType == CameraApiInterface.CALL_BACK_AUTO) {
                 mCamera!!.setPreviewCallback(this)
-            } else if (callBackType == CALL_BACK_MANUAL) {
+            } else if (callBackType == CameraApiInterface.CALL_BACK_MANUAL) {
                 mCamera!!.setPreviewCallbackWithBuffer(this)
             }
         } catch (e: IOException) {
@@ -154,7 +148,7 @@ class Camera1Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback, Camera
     }
 
     override fun addCallbackBuffer(byte: ByteArray) {
-        if (callBackType == CALL_BACK_MANUAL) {
+        if (callBackType == CameraApiInterface.CALL_BACK_MANUAL) {
             mCamera?.addCallbackBuffer(byte)
         }
     }
