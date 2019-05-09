@@ -14,9 +14,9 @@ interface CameraApiInterface {
 
         fun <V : View> init(context: Context, view: V, callBack: CameraCallBack)
 
-        fun openCamera(index: Int)
+        fun <V : View> init(context: Context, view: V, callBack: CameraCallBack, callBackType:Int)
 
-        fun openCamera(index: Int, callBackTye:Int)
+        fun openCamera(index: Int)
 
         fun closeCamera()
 

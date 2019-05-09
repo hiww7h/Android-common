@@ -9,7 +9,7 @@ import android.view.*
 
 import java.io.IOException
 
-class Camera1Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback, Camera.PreviewCallback {
+class Camera1Api(size: Size) : CameraApiInterface.CameraNeed, SurfaceHolder.Callback, Camera.PreviewCallback {
 
     private var mContext: Context? = null
     private var mSurfaceView: SurfaceView? = null
@@ -19,7 +19,7 @@ class Camera1Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback, Camera
     /**
      * 预览尺寸
      */
-    private val mSize = Size(1280, 720)
+    private val mSize = size
     private var mCameraOpen = false
 
     private var callBackType:Int = CameraApiInterface.CALL_BACK_AUTO
@@ -78,6 +78,16 @@ class Camera1Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback, Camera
         mContext = context
         mSurfaceView = view as SurfaceView
 
+    }
+
+    override fun <V : View> init(
+        context: Context,
+        view: V,
+        callBack: CameraApiInterface.CameraCallBack,
+        callBackType: Int
+    ) {
+        this.callBackType = callBackType
+        init(context, view, callBack)
     }
 
     override fun openCamera(index: Int) {
@@ -153,8 +163,4 @@ class Camera1Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback, Camera
         }
     }
 
-    override fun openCamera(index: Int, callBackTye: Int) {
-        this.callBackType = callBackType
-        openCamera(index)
-    }
 }

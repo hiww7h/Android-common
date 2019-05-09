@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.HandlerThread
 import android.support.annotation.RequiresApi
+import android.util.Size
 import android.view.Surface
 import android.view.SurfaceHolder
 import android.view.SurfaceView
@@ -17,8 +18,7 @@ import android.widget.Toast
 
 import java.util.Arrays
 
-class Camera2Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback {
-
+class Camera2Api(size: Size) : CameraApiInterface.CameraNeed, SurfaceHolder.Callback {
 
     private var mSurfaceHolder: SurfaceHolder? = null
 
@@ -28,8 +28,7 @@ class Camera2Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback {
     private var mContext: Context? = null
     private var mCameraCallBack: CameraApiInterface.CameraCallBack? = null
     private var mCameraIndex: Int = 0
-    private val mWidth = 1280
-    private val mHeight = 720
+    private val mSize = size
 
     private var mChildHandler: Handler? = null
 
@@ -62,6 +61,15 @@ class Camera2Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback {
 
         mSurfaceHolder = (view as SurfaceView).holder
         mSurfaceHolder!!.setKeepScreenOn(true)
+    }
+
+    override fun <V : View> init(
+        context: Context,
+        view: V,
+        callBack: CameraApiInterface.CameraCallBack,
+        callBackType: Int
+    ) {
+        init(context, view, callBack)
     }
 
     override fun openCamera(index: Int) {
@@ -107,7 +115,7 @@ class Camera2Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback {
         mChildHandler = Handler(handlerThread.looper)
         val mainHandler = Handler(mContext!!.mainLooper)
         mImageReader = ImageReader.newInstance(
-            mWidth, mHeight,
+            mSize.width, mSize.height,
             ImageFormat.YUV_420_888, 1
         )
         mImageReader!!.setOnImageAvailableListener(// 可以在这里处理拍照得到的临时照片 例如，写入本地
@@ -176,7 +184,4 @@ class Camera2Api : CameraApiInterface.CameraNeed, SurfaceHolder.Callback {
     override fun addCallbackBuffer(byte: ByteArray) {
     }
 
-    override fun openCamera(index: Int, callBackTye: Int) {
-        openCamera(index)
-    }
 }
