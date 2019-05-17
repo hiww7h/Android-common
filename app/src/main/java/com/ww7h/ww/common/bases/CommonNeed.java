@@ -14,8 +14,13 @@ package com.ww7h.ww.common.bases;
 public interface CommonNeed {
 
     interface ClassCommon<T> {
-        String getTag();
+
         T getInstance();
+
+        void initView();
+
+        void initAction();
+
     }
 
 }

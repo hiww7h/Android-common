@@ -12,7 +12,6 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
-import com.ww7h.ww.common.bases.CommonNeed
 import com.ww7h.ww.common.utils.Constant
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -20,15 +19,8 @@ import java.util.ArrayList
 
 abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
 
-    protected val INSTANCE: T
+    lateinit var tag: String
 
-    protected val TAG: String
-
-    init {
-        INSTANCE = this as T
-
-        TAG = INSTANCE.javaClass.name
-    }
 
     private val PERMISSION_REQUEST_CODE = 0x1001
 
@@ -57,7 +49,7 @@ abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
             setContentView(contentView)
         }
 
-
+        tag = instance.javaClass.name
 
         if (supportActionBar == null) {
             setSupportActionBar(toolbar)
@@ -231,4 +223,6 @@ abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
 
     }
 
+
+    abstract val instance: T
 }

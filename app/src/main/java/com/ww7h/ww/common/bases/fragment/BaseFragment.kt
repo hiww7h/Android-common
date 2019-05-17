@@ -13,15 +13,15 @@ import android.view.ViewGroup
 @Suppress("UNCHECKED_CAST")
 abstract class BaseFragment<T : BaseFragment<T>>:Fragment() {
     protected lateinit var TAG:String
-    protected lateinit var fragment:T
+
     /**
      * 当前是否使用了设计模式
      */
     protected abstract val designPattern: Boolean
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        fragment = this as T
-        TAG = fragment.javaClass.name
+
+        TAG = instance.javaClass.name
         return if (designPattern) {
             getContentView(inflater, container)
         } else {
@@ -61,4 +61,6 @@ abstract class BaseFragment<T : BaseFragment<T>>:Fragment() {
     protected open fun getContentView(inflater: LayoutInflater, container: ViewGroup?): View? {
         return null
     }
+
+    abstract val instance : T
 }
