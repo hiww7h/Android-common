@@ -17,7 +17,9 @@ import android.view.View;
  * @author ww  Github地址：https://github.com/ww7hcom
  * ================================================
  */
-public abstract class BaseDialog extends AlertDialog {
+public abstract class BaseDialog<T> extends AlertDialog {
+
+    protected String TAG;
 
     protected BaseDialog(Context context) {
         super(context);
@@ -41,6 +43,9 @@ public abstract class BaseDialog extends AlertDialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getResourceView());
+
+        TAG = this.getClass().getName();
+
         initView();
         initAction();
     }

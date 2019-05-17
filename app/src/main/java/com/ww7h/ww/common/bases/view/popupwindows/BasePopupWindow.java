@@ -1,4 +1,4 @@
-package com.ww7h.ww.common.popupwindows;
+package com.ww7h.ww.common.bases.view.popupwindows;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,9 +16,10 @@ import android.widget.PopupWindow;
  * @author ww  Github地址：https://github.com/ww7hcom
  * ================================================
  */
-public abstract class BasePopupWindow extends PopupWindow {
+public abstract class BasePopupWindow<T> extends PopupWindow {
 
     private Context mContext;
+    protected String TAG;
 
     public BasePopupWindow(Context context) {
         mContext = context;
@@ -33,6 +34,8 @@ public abstract class BasePopupWindow extends PopupWindow {
 
     private void onCreateView() {
         setContentView(getResourceView());
+
+        TAG = this.getClass().getName();
 
         initView();
         initAction();
