@@ -40,16 +40,16 @@ class SpaceItemDecoration (space: Int,column:Int): RecyclerView.ItemDecoration()
         super.getItemOffsets(outRect, view, parent, state)
 
         outRect.bottom = mSpace
-        if (mColumn == 1) {
+        if (parent.getChildAdapterPosition(view) == 0) {
             outRect.top = mSpace
+        } else {
+            outRect.top = 0
+        }
+        if (mColumn == 1) {
             outRect.left = mSpace
             outRect.right = mSpace
         } else {
-            if (parent.getChildAdapterPosition(view) == 0) {
-                outRect.top = mSpace
-            } else {
-                outRect.top = 0
-            }
+
             if (parent.getChildAdapterPosition(view) % mColumn == 0) {
                 outRect.left = mSpace
                 outRect.right = mSpace / 2
