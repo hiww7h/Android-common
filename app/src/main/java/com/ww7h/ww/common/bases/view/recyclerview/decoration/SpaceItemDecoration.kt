@@ -9,8 +9,8 @@ import android.view.View
  */
 class SpaceItemDecoration (space: Int,column:Int): RecyclerView.ItemDecoration() {
 
-    var mSpace: Int = 0
-    var mColumn: Int = 0
+    private var mSpace: Int = 0
+    private var mColumn: Int = 0
 
     /**
      * Retrieve any offsets for the given item. Each field of `outRect` specifies
@@ -40,15 +40,26 @@ class SpaceItemDecoration (space: Int,column:Int): RecyclerView.ItemDecoration()
         super.getItemOffsets(outRect, view, parent, state)
 
         outRect.bottom = mSpace
-        if (parent.getChildAdapterPosition(view) < this.mColumn ) {
+        if (mColumn == 1) {
             outRect.top = mSpace
-        }
-        if ((parent.getChildAdapterPosition(view)+1)%this.mColumn==0){
-            outRect.left = mSpace/2
-            outRect.right = mSpace
-        }else{
             outRect.left = mSpace
-            outRect.right = mSpace/2
+            outRect.right = mSpace
+        } else {
+            if (parent.getChildAdapterPosition(view) == 0) {
+                outRect.top = mSpace
+            } else {
+                outRect.top = 0
+            }
+            if (parent.getChildAdapterPosition(view) % mColumn == 0) {
+                outRect.left = mSpace
+                outRect.right = mSpace / 2
+            } else if (parent.getChildAdapterPosition(view) % mColumn == mColumn - 1) {
+                outRect.left = mSpace / 2
+                outRect.right = mSpace
+            } else {
+                outRect.left = mSpace / 2
+                outRect.right = mSpace / 2
+            }
         }
 
     }
