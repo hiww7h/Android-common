@@ -1,6 +1,7 @@
 package com.ww7h.ww.common.bases.view.recyclerview.decoration
 
 import android.graphics.Rect
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -24,9 +25,19 @@ class SpaceItemDecoration (space: Int,column:Int): RecyclerView.ItemDecoration()
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
 
-        val params = view.layoutParams as StaggeredGridLayoutManager.LayoutParams
+        var spanIndex = 0
+
+
+        if (view.layoutParams is StaggeredGridLayoutManager.LayoutParams) {
+            val params = view.layoutParams as StaggeredGridLayoutManager.LayoutParams
+            spanIndex = params.spanIndex
+//            spanIndex = parent.getChildLayoutPosition(view)
+
+        } else {
+            spanIndex = parent.getChildAdapterPosition(view)
+        }
+
         // 获取item在span中的下标
-        val spanIndex = params.spanIndex
 
         outRect.bottom = mSpace
         if (spanIndex < mColumn) {
