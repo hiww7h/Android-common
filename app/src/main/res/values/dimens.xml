@@ -5,6 +5,7 @@
 
     <dimen name="toolbar_title_size">16sp</dimen>
     <dimen name="button_height">40dp</dimen>
+    <dimen name="toolbar_height">48dp</dimen>
 
     <dimen name="min_text_size">11sp</dimen>
 
