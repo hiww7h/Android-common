@@ -3,11 +3,11 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
+    android:background="@color/toolbar_bg"
     android:theme="@style/ToolbarTheme">
     <TextView
         android:id="@+id/title_tv"
-        android:textColor="@color/color_6f"
+        android:textColor="@color/toolbar_title"
         android:layout_gravity="center"
         android:singleLine="true"
         android:textSize="@dimen/sp_18"
