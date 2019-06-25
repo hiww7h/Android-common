@@ -21,35 +21,30 @@ object SPUtil {
      * @param key
      * @param object
      */
-    fun SPUtil.put(context: Context, key: String, `object`: Any) {
+    fun SPUtil.put(context: Context, key: String, value: Any) {
 
         val sp = context.getSharedPreferences(FILENAME, Context.MODE_PRIVATE)
         val editor = sp.edit()
 
-        if (`object` is String) {
-            editor.putString(key, `object`)
-        } else if (`object` is Int) {
-            editor.putInt(key, `object`)
-        } else if (`object` is Boolean) {
-            editor.putBoolean(key, `object`)
-        } else if (`object` is Float) {
-            editor.putFloat(key, `object`)
-        } else if (`object` is Long) {
-            editor.putLong(key, `object`)
-        } else {
-            saveObject(editor, key, `object`)
+        when (value) {
+            is String -> editor.putString(key, value)
+            is Int -> editor.putInt(key, value)
+            is Boolean -> editor.putBoolean(key, value)
+            is Float -> editor.putFloat(key, value)
+            is Long -> editor.putLong(key, value)
+            else -> saveObject(editor, key, value)
         }
         SharedPreferencesCompat.apply(editor)
     }
 
-    private fun saveObject(editor: SharedPreferences.Editor, key: String, `object`: Any) {
+    private fun saveObject(editor: SharedPreferences.Editor, key: String, value: Any) {
         // 创建字节输出流
         val baos = ByteArrayOutputStream()
         try {
             // 创建对象输出流，并封装字节流
             val oos = ObjectOutputStream(baos)
             // 将对象写入字节流
-            oos.writeObject(`object`)
+            oos.writeObject(value)
             // 将字节流编码成base64的字符窜
             val oAuthBase64 = String(Base64.encodeBase64(baos.toByteArray()))
             editor.putString(key, oAuthBase64)
