@@ -21,7 +21,7 @@ object SPUtil {
      * @param key
      * @param object
      */
-    fun SPUtil.put(context: Context, key: String, value: Any) {
+    fun put(context: Context, key: String, value: Any) {
 
         val sp = context.getSharedPreferences(FILENAME, Context.MODE_PRIVATE)
         val editor = sp.edit()
