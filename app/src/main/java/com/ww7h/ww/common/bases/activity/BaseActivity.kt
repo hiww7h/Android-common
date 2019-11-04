@@ -49,7 +49,7 @@ abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
             setContentView(contentView)
         }
 
-        tag = instance.javaClass.name
+        tag = this.javaClass.name
 
         if (supportActionBar == null) {
             setSupportActionBar(toolbar)
