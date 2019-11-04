@@ -222,7 +222,4 @@ abstract class BaseActivity<T : BaseActivity<T>> : AppCompatActivity() {
     protected open fun initContentView() {
 
     }
-
-
-    abstract val instance: T
 }
