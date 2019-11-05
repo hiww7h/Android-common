@@ -1,5 +1,8 @@
 package com.ww7h.ww.common.threads;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -14,6 +17,7 @@ import java.util.concurrent.*;
 public class ThreadPoolManager {
 
     private ThreadPool threadPoolExecutor;
+    private Handler mMainHandler;
 
     private static class ThreadPoolManagerInstance {
         private final static ThreadPoolManager INSTANCE = new ThreadPoolManager();
@@ -29,6 +33,7 @@ public class ThreadPoolManager {
                 Runtime.getRuntime().availableProcessors() * 10, 3000,
                 TimeUnit.MILLISECONDS, new LinkedBlockingDeque<Runnable>(30),
                 tf,  new ThreadPoolExecutor.DiscardPolicy());
+
     }
 
     private ThreadPool getThreadPoolExecutor() {
@@ -53,6 +58,21 @@ public class ThreadPoolManager {
 
     public void execute(Runnable command) {
         getThreadPoolExecutor().execute(command);
+    }
+
+    private Handler getMainHandler() {
+        if (mMainHandler == null) {
+            synchronized (this) {
+                if (mMainHandler == null) {
+                    mMainHandler = new Handler(Looper.getMainLooper());
+                }
+            }
+        }
+        return mMainHandler;
+    }
+
+    public void executeOnUiThread(Runnable command) {
+        getMainHandler().post(command);
     }
 
     public List<Runnable> shutdownNow() {
