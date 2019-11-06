@@ -40,8 +40,8 @@ class BottomListPopupWindow(var context: Context, typeList:List<TypeModel>, priv
         cancelBtn.setOnClickListener(this)
     }
 
-    override fun onItemClick(t: TypeModel?) {
-        onRecyclerItemClick.onItemClick(t!!)
+    override fun onItemClick(t: TypeModel) {
+        onRecyclerItemClick.onItemClick(t)
         dismiss()
     }
 
