@@ -8,7 +8,7 @@ import android.media.ImageReader
 import android.os.Build
 import android.os.Handler
 import android.os.HandlerThread
-import android.support.annotation.RequiresApi
+import androidx.annotation.RequiresApi
 import android.util.Size
 import android.view.Surface
 import android.view.SurfaceHolder

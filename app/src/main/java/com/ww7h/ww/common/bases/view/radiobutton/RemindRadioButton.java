@@ -20,7 +20,7 @@ import android.util.AttributeSet;
  * @author ww  Github地址：https://github.com/ww7hcom
  * ================================================
  */
-public class RemindRadioButton extends android.support.v7.widget.AppCompatRadioButton {
+public class RemindRadioButton extends androidx.appcompat.widget.AppCompatRadioButton {
 
     private float remindWidth;
     private float remindHeight;

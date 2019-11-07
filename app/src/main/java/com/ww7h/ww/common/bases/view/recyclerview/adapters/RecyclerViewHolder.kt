@@ -1,6 +1,6 @@
 package com.ww7h.ww.common.bases.view.recyclerview.adapters
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.util.SparseArray
 import android.view.View
 

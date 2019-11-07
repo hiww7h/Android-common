@@ -1,10 +1,9 @@
 package com.ww7h.ww.common.bases.view.recyclerview.decoration
 
 import android.graphics.Rect
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
-import android.support.v7.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 
 

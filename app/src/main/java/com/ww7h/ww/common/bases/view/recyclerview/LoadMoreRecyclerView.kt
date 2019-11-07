@@ -1,9 +1,9 @@
 package com.ww7h.ww.common.bases.view.recyclerview
 
 import android.content.Context
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.AttributeSet
 
 abstract class LoadMoreRecyclerView(context: Context, attrs: AttributeSet?): RecyclerView(context,attrs) {
@@ -35,7 +35,7 @@ abstract class LoadMoreRecyclerView(context: Context, attrs: AttributeSet?): Rec
 
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
-            if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItemPosition + 1 == recyclerView.adapter!!.itemCount) {
+            if (newState == SCROLL_STATE_IDLE && lastVisibleItemPosition + 1 == recyclerView.adapter!!.itemCount) {
                 val isRefreshing = swipeRefreshLayout?.isRefreshing
                 if (isRefreshing!!) {
                     recyclerView.adapter!!.notifyItemRemoved((recyclerView as LoadMoreRecyclerView).adapter!!.itemCount)

@@ -2,7 +2,7 @@ package com.ww7h.ww.common.bases.contentprovider;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import com.ww7h.ww.common.R;
 
 /**

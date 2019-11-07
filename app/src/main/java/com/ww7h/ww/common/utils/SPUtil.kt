@@ -2,7 +2,7 @@ package com.ww7h.ww.common.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.support.v4.content.SharedPreferencesCompat
+import androidx.core.content.SharedPreferencesCompat
 import org.apache.commons.codec.binary.Base64
 import java.io.*
 import java.lang.reflect.InvocationTargetException

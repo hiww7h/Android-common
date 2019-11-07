@@ -6,7 +6,7 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.pm.Signature
 import android.net.Uri
-import android.support.v4.content.ContextCompat.startActivity
+import androidx.core.content.ContextCompat.startActivity
 
 import java.io.ByteArrayInputStream
 import java.io.File
