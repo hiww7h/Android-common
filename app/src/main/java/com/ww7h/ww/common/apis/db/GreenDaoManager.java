@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-class GreenDaoManager {
+public class GreenDaoManager {
 
     private AbstractDaoMaster daoMaster = null;
     private AbstractDaoSession daoSession = null;
@@ -56,9 +56,7 @@ class GreenDaoManager {
         this.helper = helper;
         try {
             this.daoMaster = (AbstractDaoMaster) daoMasterClass.newInstance();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
+        } catch (IllegalAccessException | InstantiationException e) {
             e.printStackTrace();
         }
 
