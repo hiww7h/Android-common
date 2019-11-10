@@ -51,15 +51,10 @@ public class GreenDaoManager {
 
     }
 
-    public void initGreenDao(DatabaseOpenHelper helper, Class<?> daoMasterClass) {
+    public void initGreenDao(DatabaseOpenHelper helper, AbstractDaoMaster daoMaster) {
 
         this.helper = helper;
-        try {
-            this.daoMaster = (AbstractDaoMaster) daoMasterClass.newInstance();
-        } catch (IllegalAccessException | InstantiationException e) {
-            e.printStackTrace();
-        }
-
+        this.daoMaster = daoMaster;
     }
 
 

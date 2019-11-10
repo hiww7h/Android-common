@@ -24,8 +24,8 @@ class BottomListPopupWindow(var context: Context, typeList:List<TypeModel>, priv
 
     init {
         contentView = LayoutInflater.from(context).inflate(R.layout.popup_window_bottom_list,null)
-        val cancelBtn = contentView.findViewById<Button>(R.id.cancel_btn)
-        val selectListRv = contentView.findViewById<RecyclerView>(R.id.select_list_rv)
+        val cancelBtn: Button = contentView.findViewById(R.id.cancel_btn)
+        val selectListRv: RecyclerView = contentView.findViewById(R.id.select_list_rv)
         selectListRv.layoutManager = LinearLayoutManager(context)
         selectListRv.adapter = typeAdapter
         selectListRv.addItemDecoration( SpaceItemDecoration(DensityUtil.dp2px(context ,1f),1))
