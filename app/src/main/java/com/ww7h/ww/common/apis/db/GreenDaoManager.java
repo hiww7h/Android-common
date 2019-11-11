@@ -146,6 +146,7 @@ public class GreenDaoManager {
     }
 
     private synchronized <T> void writeDB(int type, T entity, List<String> sqlList, String[] sqls, String sql) {
+        getDB(true);
         openCount++;
         switch (type) {
             case WRITE_TYPE_INSERT:
@@ -307,9 +308,7 @@ public class GreenDaoManager {
                     field.set(t, cursor.getDouble(index));
                     break;
             }
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalAccessException | IllegalArgumentException e) {
             e.printStackTrace();
         }
 
@@ -345,7 +344,7 @@ public class GreenDaoManager {
         return count > 0;
     }
 
-    private long queryCount(String sql) {
+    public long queryCount(String sql) {
         SQLiteDatabase db = getDB(false);
         Cursor cursor = db.rawQuery(sql, null);
         long count = 0;
