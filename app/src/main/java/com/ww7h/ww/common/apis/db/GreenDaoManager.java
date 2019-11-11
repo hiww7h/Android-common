@@ -166,6 +166,15 @@ public class GreenDaoManager {
         closeDB();
     }
 
+    public <T> T queryOne(Class<T> clazz, String sql) {
+        List<T> tList = queryList(clazz, sql);
+        if (!tList.isEmpty()) {
+            return tList.get(0);
+        } else {
+            return null;
+        }
+    }
+
     public <T> void queryOne(final Class<T> clazz, final String sql, final GreenDaoCallBack.QueryCallBack<T> callBack) {
 
         Observable.create(new ObservableOnSubscribe<T>() {
@@ -225,7 +234,7 @@ public class GreenDaoManager {
 
     }
 
-    private <T> List<T> queryList(Class<T> clazz, String sql) {
+    public  <T> List<T> queryList(Class<T> clazz, String sql) {
         SQLiteDatabase db = getDB(false);
         List<T> tList = new ArrayList<T>();
         Cursor cursor;
