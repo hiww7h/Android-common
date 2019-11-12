@@ -24,6 +24,9 @@ public class GreenDaoManager {
     private AbstractDaoMaster daoMaster = null;
     private AbstractDaoSession daoSession = null;
     private DatabaseOpenHelper helper = null;
+    private SQLiteDatabase mRDb;
+    private SQLiteDatabase mWDb;
+
     private int openCount = 0;
 
     private final int WRITE_TYPE_INSERT = 0;
@@ -52,7 +55,6 @@ public class GreenDaoManager {
     }
 
     public void initGreenDao(DatabaseOpenHelper helper, AbstractDaoMaster daoMaster) {
-
         this.helper = helper;
         this.daoMaster = daoMaster;
     }
@@ -64,12 +66,11 @@ public class GreenDaoManager {
      * @param needWrite 是否需要写入操作
      * @return 数据库操作对象
      */
-    private SQLiteDatabase getDB(Boolean needWrite) {
-        openCount++;
+    private synchronized void getDB(Boolean needWrite) {
         if (needWrite) {
-            return helper.getWritableDatabase();
+            mWDb = helper.getWritableDatabase();
         } else {
-            return helper.getReadableDatabase();
+            mRDb = helper.getReadableDatabase();
         }
     }
 
@@ -78,21 +79,17 @@ public class GreenDaoManager {
      *
      * @param db 数据库对象
      */
-    private void closeDB(SQLiteDatabase db) {
-        openCount--;
-        if (openCount == 0) {
-            db.close();
-        }
+    public void closeDB(SQLiteDatabase db) {
+        db.close();
+        mWDb = null;
+        mRDb = null;
     }
 
     /**
      * 关闭数据库
      */
-    private void closeDB() {
-        openCount--;
-        if (openCount == 0 && daoSession != null) {
-            daoSession.getDatabase().close();
-        }
+    public void closeDB() {
+        daoSession.getDatabase().close();
     }
 
     private AbstractDaoSession getDaoSession() {
@@ -146,7 +143,8 @@ public class GreenDaoManager {
     }
 
     private synchronized <T> void writeDB(int type, T entity, List<String> sqlList, String[] sqls, String sql) {
-        getDB(true);
+
+        settingDb(true);
         openCount++;
         switch (type) {
             case WRITE_TYPE_INSERT:
@@ -162,8 +160,6 @@ public class GreenDaoManager {
                 getDaoSession().delete(entity);
                 break;
         }
-
-        closeDB();
     }
 
     public <T> T queryOne(Class<T> clazz, String sql) {
@@ -235,13 +231,12 @@ public class GreenDaoManager {
     }
 
     public  <T> List<T> queryList(Class<T> clazz, String sql) {
-        SQLiteDatabase db = getDB(false);
+        settingDb(false);
         List<T> tList = new ArrayList<T>();
-        Cursor cursor;
+        Cursor cursor = null;
         try {
-            cursor = db.rawQuery(sql, null);
+            cursor = mRDb.rawQuery(sql, null);
         } catch (Exception e) {
-            closeDB(db);
             return tList;
         }
 
@@ -267,7 +262,6 @@ public class GreenDaoManager {
             cursor.moveToNext();
         }
         cursor.close();
-        closeDB(db);
         return tList;
     }
 
@@ -354,8 +348,8 @@ public class GreenDaoManager {
     }
 
     public long queryCount(String sql) {
-        SQLiteDatabase db = getDB(false);
-        Cursor cursor = db.rawQuery(sql, null);
+        settingRDb();
+        Cursor cursor = mRDb.rawQuery(sql, null);
         long count = 0;
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -364,8 +358,34 @@ public class GreenDaoManager {
             cursor.moveToNext();
         }
         cursor.close();
-        closeDB(db);
         return count;
+    }
+
+
+    private synchronized void settingDb(boolean isWrite) {
+        if (isWrite) {
+            settingWDb();
+        } else {
+            settingRDb();
+        }
+
+    }
+
+    private void settingRDb() {
+        if (mRDb == null) {
+            if (mWDb != null) {
+                mRDb = mWDb;
+            } else {
+                getDB(false);
+            }
+        }
+    }
+
+    private void settingWDb() {
+        if (mWDb == null) {
+            getDB(true);
+            mRDb = mWDb;
+        }
     }
 
 }
