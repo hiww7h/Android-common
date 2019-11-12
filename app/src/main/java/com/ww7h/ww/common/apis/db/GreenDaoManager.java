@@ -87,6 +87,21 @@ public class GreenDaoManager {
 
     /**
      * 关闭数据库
+     *
+     */
+    public void closeAllDb() {
+        if (mWDb != null && mWDb.isOpen()) {
+            mWDb.close();
+        }
+        if (mRDb != null && mRDb.isOpen()) {
+            mRDb.close();
+        }
+        mWDb = null;
+        mRDb = null;
+    }
+
+    /**
+     * 关闭数据库
      */
     public void closeDB() {
         daoSession.getDatabase().close();
